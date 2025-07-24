@@ -1,0 +1,182 @@
+
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Milk & Vegetable Delivery</title>
+  
+<style>
+
+.register-box {
+  background-color: #ffffff;
+  padding: 30px 25px;
+  max-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+  margin-top: 40px;
+  margin-right: 100px;
+  transition: transform 0.3s;
+}
+
+.register-box:hover {
+  transform: translateY(-3px);
+}
+
+.register-box h2 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #2C3E50;
+  text-align: center;
+}
+
+.register-box label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.register-box input,
+.register-box select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.register-box button {
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  width: 100%;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register-box button:hover {
+  background-color: #e64a19;
+}
+
+.register-box p {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.register-box a {
+  color: #e67e22;
+  text-decoration: none;
+  font-weight: bold;
+}
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  .nav, .sidebar {
+    display: none;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+/* Large devices (laptops and desktops) */
+@media (min-width: 1025px) {
+  /* Optional desktop-specific styling */
+}
+
+
+  </style>
+</head>
+<body>
+  <div class="register-container">
+    <div class="register-box">
+      <h2>Register</h2>
+      <form id="registerForm">
+        <label for="role">Select Role:</label>
+        <select name="role" id="role" required>
+          <option value="Customer">Customer</option>
+          <option value="Seller">Seller</option>
+          <option value="Admin">Admin</option>
+        </select>
+
+        <label for="name">Name:</label>
+        <input type="text" name="name" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="text" name="phone" pattern="\d{10}" title="Phone must be 10 digits" required>
+
+        <label for="password">Create Password:</label>
+        <input type="password" name="password" 
+               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=!]).{8,}" 
+               title="Password must be at least 8 characters, include uppercase, lowercase, number, and symbol." 
+               required>
+
+        <button type="submit">Register</button>
+      </form>
+      <p>Already registered? <a href="login.php">Login here</a></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById("registerForm");
+    const roleSelect = document.getElementById("role");
+    const passwordInput = document.querySelector('input[name="password"]');
+    const passwordLabel = document.querySelector('label[for="password"]');
+    const DEFAULT_ADMIN_PASSWORD = "SST=farm2home";
+  
+    // Change password label depending on role
+    roleSelect.addEventListener("change", () => {
+      if (roleSelect.value === "Admin") {
+        passwordLabel.textContent = "Enter the password:";
+      } else {
+        passwordLabel.textContent = "Create Password:";
+      }
+    });
+  
+    // Handle form submission
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+  
+      // Check admin password
+      if (roleSelect.value === "Admin" && passwordInput.value !== DEFAULT_ADMIN_PASSWORD) {
+        alert("Incorrect admin password. Access denied.");
+        return;
+      }
+  
+      const formData = new FormData(form);
+  
+      fetch("register.php", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        alert(data.message);
+        if (data.status === "success") {
+          form.reset();
+          passwordLabel.textContent = "Create Password:"; // Reset label
+          window.history.replaceState({}, document.title, window.location.pathname); // Prevent resubmission
+        }
+      })
+      .catch(error => {
+        alert("Error: " + error);
+      });
+    });
+  </script>
+  
+  
+</body>
+</html>

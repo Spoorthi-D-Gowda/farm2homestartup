@@ -1,0 +1,264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Area</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+    background: green;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+      
+        .section {
+            margin: 20px auto;
+            width: 80%;
+            text-align: center;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 450px;
+            justify-content: space-between;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+            justify-content: space-between;
+            gap: 10%;
+        }
+        .quality-clean-container, .details-images {
+            display: flex;
+            justify-content: space-between;
+            width: 80%;
+            margin: 20px auto;
+        }
+        .quality-box, .clean-box, .details-images img {
+            width: 45%;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section-header {
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .details-container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .milk-storage {
+            text-align: left;
+            font-size: 18px;
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+    background: #2C3E50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+        /* Small devices (phones) */
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+  }
+  .nav, .sidebar {
+    display: none;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+/* Large devices (laptops and desktops) */
+@media (min-width: 1025px) {
+  /* Optional desktop-specific styling */
+}
+
+
+    </style>
+</head>
+<body>
+    <header>
+    
+        <nav>
+    
+            <h1>Farming Area</h1>
+    
+            <ul>
+    
+                <li><a href="index2.php">Home</a></li>
+    
+                <li><a href="product.php">Products</a></li>
+    
+                <li><a href="sellers.php">Sellers</a></li>
+    
+                <li><a href="offers.php">Offers</a></li>
+                
+                <li><a href="queries.html">Queries/Suggestions</a></li>
+                
+                
+    
+                
+                
+                        
+            </ul>
+    
+        </nav>
+    
+    </header>
+    <div class="section" id="farming-gallery">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="uploads/farm1.jpg" alt="Farming Area"></div>
+                <div class="swiper-slide">
+                    <img src="uploads/farm2.jpg" alt="Farming Area">
+                  </div>
+                  
+                <div class="swiper-slide"><img src="uploads/farm.jpg" alt="Farming Area"></div>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </div>
+    
+    <div class="section" id="quality-clean">
+        <div class="section-header">Quality & Clean Guarantee</div>
+        <div class="quality-clean-container">
+            <div class="quality-box">
+                <h3>Quality</h3>
+                <p>Space to add text about quality assurance.</p>
+            </div>
+            <div class="clean-box">
+                <h3>Clean Guarantee</h3>
+                <p>Space to add text about cleanliness standards.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="quality-clean">
+        <div class="section-header">Cow Details</div>
+        <div class="quality-clean-container">
+            <div class="quality-box">
+                <p>Our cows are raised in clean, natural environments to ensure high-quality milk production.</p>
+            </div>
+            <div class="clean-box">
+                <p>Each cow is regularly checked by veterinarians for health and well-being..</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="quality-clean">
+        <div class="section-header">Flowers Details</div>
+        <div class="quality-clean-container">
+            <div class="quality-box">
+                <p>Our flowers are grown using organic methods, ensuring vibrant colors and long-lasting freshness.</p>
+            </div>
+            <div class="clean-box">
+                <p>Handpicked daily, they add natural beauty and fragrance to every occasion. 🌸</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="quality-clean">
+        <div class="section-header">Fruits Details</div>
+        <div class="quality-clean-container">
+            <div class="quality-box">
+                <p>Our fruits are naturally ripened and packed with essential nutrients for a healthy lifestyle.</p>
+            </div>
+            <div class="clean-box">
+                <p>Grown without harmful chemicals, they offer farm-fresh taste straight to your table. 🍎🍌🍇</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="quality-clean">
+        <div class="section-header">Vegetable Details</div>
+        <div class="quality-clean-container">
+            <div class="quality-box">
+                <p>Our vegetables are harvested fresh from the farm, rich in flavor and nutrition.</p>
+            </div>
+            <div class="clean-box">
+                <p>Grown with sustainable practices, they bring wholesome goodness to your meals. 🥦🥕🥬</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="section" id="quality-clean">
+        <div class="section-header">Milk Storage</div>
+        <div class="quality-clean-container">
+            <div class="quality-box">
+                <p>From farm to bottle, every step is carefully monitored to ensure safe and pure milk delivery. 🥛.</p>
+            </div>
+            <div class="clean-box">
+                <p> After collection, the milk is quickly transferred to processing units without delay, ensuring it remains fresh and uncontaminated throughout the entire journey.Grown with sustainable practices, they bring wholesome goodness to your meals. 🥦🥕🥬</p>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.swiper-container', {
+    loop: true,
+    spaceBetween: 20, // <-- This adds spacing between slides
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+});
+
+    </script>
+<footer>
+
+    <p>&copy; 2025 Milk & Vegetable Delivery</p>
+
+</footer>
+
+</body>
+
+</html>
