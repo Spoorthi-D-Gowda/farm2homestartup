@@ -175,42 +175,6 @@
         alert("Error: " + error);
       });
     });
-    document.getElementById("registerForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const phone = formData.get("phone");
-
-    // STEP 1: Send OTP
-    fetch("send_otp.php", {
-        method: "POST",
-        body: new URLSearchParams({ phone })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.status === "success") {
-            const userOTP = prompt("Enter the OTP sent to your phone:");
-            if (userOTP) {
-                formData.append("otp", userOTP); // Add OTP to form
-
-                // STEP 2: Register with OTP
-                fetch("register.php", {
-                    method: "POST",
-                    body: formData
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert(data.message);
-                    if (data.status === "success") {
-                        document.getElementById("registerForm").reset();
-                    }
-                });
-            }
-        } else {
-            alert(data.message);
-        }
-    });
-});
 
   </script>
   
