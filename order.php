@@ -202,6 +202,49 @@ $conn->close();
 
     </style>
 </head>
+<script>
+function fillAddress() {
+    const status = document.getElementById("location-status");
+    const editable = document.getElementById("address");
+
+    if (!navigator.geolocation) {
+        status.textContent = "Geolocation not supported.";
+        return;
+    }
+
+    status.textContent = "Detecting location...";
+
+    navigator.geolocation.getCurrentPosition(success, error);
+
+    function success(pos) {
+        const lat = pos.coords.latitude;
+        const lon = pos.coords.longitude;
+
+        fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&addressdetails=1`)
+            .then(response => response.json())
+            .then(data => {
+                const addr = data.address;
+                const road = addr.road || "";
+                const neighbourhood = addr.neighbourhood || addr.suburb || "";
+                const landmark = addr.building || addr.university || "";
+
+                const result = `${landmark}, ${road}, ${neighbourhood}`.replace(/(, )+/g, ", ").trim().replace(/^,|,$/g, "");
+                editable.value = result;
+                status.textContent = "Please review and complete your address.";
+            })
+            .catch(() => {
+                status.textContent = "Could not fetch address. Try again.";
+            });
+    }
+
+    function error() {
+        status.textContent = "Permission denied or location unavailable.";
+    }
+}
+</script>
+
+
+
 <body>
 
 <div class="container">
@@ -230,9 +273,13 @@ $conn->close();
         <input type="text" name="phone" id="phone" value="<?php echo htmlspecialchars($phone); ?>" readonly>
 
         <label for="address">Address:</label>
-        <textarea name="address" id="address" required></textarea>
+<textarea name="address" id="address" rows="3" placeholder="e.g. Door No 12, Street Name, Near Landmark" required></textarea>
 
-        <label for="quantity">Quantity:</label>
+<!-- Fixed Hassan, Karnataka, Pincode -->
+<input type="text" name="city_state_pin" value="Hassan, Karnataka, 573201" readonly style="margin-top:5px; background-color:#f1f1f1; border:none; font-weight:bold;">
+<button type="button" onclick="fillAddress()">Use Current Location</button>
+<span id="location-status" style="font-size:13px; color:#666;"></span>
+ <label for="quantity">Quantity:</label>
         <input type="number" name="quantity" id="quantity" min="1" max="<?php echo htmlspecialchars($product['quantity']); ?>" required>
 
         <label for="payment">Payment Method:</label>
